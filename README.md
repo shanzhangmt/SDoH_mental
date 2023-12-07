@@ -9,11 +9,11 @@ We performed generalized estimation equations as our main analysis using R packa
 ## Installation guide
 ### Instructions
 The softwares as StataMP version 17 and RStudio with R version 4.3.1 can be downloaded from their official websites (StataMP: https://www.stata.com/statamp/; RStudio and R: https://posit.co/download/rstudio-desktop/). The R packages can be installed using the following code:
-install.packages('geepack')
-install.packages('meta')
-install.packages('lme4')
-install.packages('bife')
-install.packages('mice')
+install.packages('geepack'); 
+install.packages('meta'); 
+install.packages('lme4'); 
+install.packages('bife'); 
+install.packages('mice').
 ### Typical install time
 The install time of StataMP version 17 in our Windows OS was about 4 minutes, and the install time of RStudio with R version 4.3.1 was about 2 minutes. The installation of the R packages should take several seconds to few minutes.
 
