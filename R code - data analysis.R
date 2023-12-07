@@ -1561,6 +1561,82 @@ write.xlsx(list_data, file = "C:/Users/Lenovo/Desktop/搞数据库/4. 数据分�
 
 
 
+###### 6. linear mixed-effects model ######
+###### (The results of the analysis were not displayed in the manuscript because 
+###### this analysis was not identified as the most suitable model, details see method section
+
+###########using the merged sample of six cohort studies############
+library(haven)    ##打开.dta文件
+library(lme4)
+library(stats)
+library(stringr)
+library(sjstats)
+library(jtools)
+install.packages('jtools')
+
+dt <- read_dta("D:/SCI/Database/0. 数据汇总 (6 database)/1 期数据库（调节效应分析）/2. 分析库/6个数据库（合并）.dta")
+dt$hdi1 <- (dt$hdi-mean(dt$hdi))/sd(dt$hdi)
+dt$sdi1 <- (dt$sdi-mean(dt$sdi))/sd(dt$sdi)
+dt$sudi1 <- (dt$sudi-mean(dt$sudi))/sd(dt$sudi)
+dt$country11 <- dt$country1-mean(dt$country1)
+dt$age1 <- (dt$age-mean(dt$age))/sd(dt$age)
+
+fit1_m <- glmer(depress1~factor(employ1)+factor(edu1)+factor(owner1)+factor(marriage1)*hdi1+
+                  factor(childh)+
+                  age1+factor(sex)+factor(smoke)+factor(drink)+factor(chronic)+
+                  factor(badl)+(1|country11), data=dt, family=binomial,
+                control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun=2e9)))
+summ(fit1_m, exp = T)
+summary(fit1_m)
+
+result1_m <- summary(fit1_m)
+result1_m
+result1.1_m <- result1_m$coefficients
+result1.1_m[14,1]
+
+
+fit1 <- glm(depress1~factor(employ1)*di1+factor(edu1)+factor(owner1)+factor(marriage1)+
+              factor(childh)+
+              age+factor(sex)+factor(smoke)+factor(drink)+factor(chronic)+
+              factor(badl), data=dt, family=binomial(logit))
+result1 <- summary(fit1)
+result1
+result1.1 <- result1$coefficients
+result1.1[14,1]
+
+i=6
+irr <- exp(result1.1[i,1])
+irr
+sd <- irr*result1.1[i,2]
+p <- round(result1.1[i,4],4)
+irr_l <- irr-qnorm(0.975)*sd
+irr_u <- irr+qnorm(0.975)*sd
+irr_ci <- str_c(sprintf("%0.2f",irr)," (",sprintf("%0.2f",irr_l),", ",sprintf("%0.2f",irr_u),")")
+irr_ci
+p
+
+irr1 <- exp(result1.1[i+1,1])
+irr1
+sd1 <- irr1*result1.1[i+1,2]
+p1 <- round(result1.1[i+1,4],4)
+irr1_l <- irr1-qnorm(0.975)*sd1
+irr1_u <- irr1+qnorm(0.975)*sd1
+irr1_ci <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr1_l),", ",sprintf("%0.2f",irr1_u),")")
+
+irr2 <- exp(result1.1[14,1])
+irr2
+sd2 <- irr2*result1.1[14,2]
+p2 <- round(result1.1[14,4],4)
+irr2_l <- irr2-qnorm(0.975)*sd2
+irr2_u <- irr2+qnorm(0.975)*sd2
+irr2_ci <- str_c(sprintf("%0.2f",irr2)," (",sprintf("%0.2f",irr2_l),", ",sprintf("%0.2f",irr2_u),")")
+irr_ci
+p
+irr1_ci
+p1
+irr2_ci
+p2
+
 
 
 
