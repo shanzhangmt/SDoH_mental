@@ -10,7 +10,7 @@
 
 
 ###### 1.generalized estimation equations ######
-library(haven)    ##open .dta文件
+library(haven)    ##open .dta file
 library(geepack)    ##GEE
 library(openxlsx)
 library(stringr)
@@ -649,7 +649,7 @@ for (j in 1:8) {
                    data=dt0,waves=wave,family=gaussian(identity))
   summary(result)
   result <- summary(result)$coefficients
-  irr <- result[2,1]    ##irr值
+  irr <- result[2,1]    ##irr
   std <- result[2,2]
   irr_l <- irr-qnorm((1+0.95)/2)*std    ##irr_low
   irr_u <- irr+qnorm((1+0.95)/2)*std    ##irr_up
@@ -666,8 +666,8 @@ result.5 <- geeglm(depress~factor(housefw2)+factor(employ1)+factor(pension1)+
                    data=dt0,waves=wave,family=gaussian(identity))
 result1 <- summary(result.5)$coefficients
 for(k in 1:8){
-  irr1 <- result1[k+1,1]    ##irr值
-  std1 <- result1[k+1,2]    ##std值
+  irr1 <- result1[k+1,1]    ##irr
+  std1 <- result1[k+1,2]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -675,13 +675,13 @@ for(k in 1:8){
   
   if (k==8){
     k=9
-    n <- length(dt0$id)    ##n值
+    n <- length(dt0$id)    ##n
     meta[[k]][1,4] <- n
     meta[[k]][1,6] <- irr1
     meta[[k]][1,7] <- std1
     k=k+1
   }else{
-    n <- length(dt0$id)    ##n值
+    n <- length(dt0$id)    ##n
     meta[[k]][1,4] <- n
     meta[[k]][1,6] <- irr1
     meta[[k]][1,7] <- std1
@@ -705,8 +705,8 @@ result.5 <- geeglm(depress~factor(sdoh1)+age+factor(sex)+factor(smoke)+factor(dr
                    data=dt0,waves=wave,family=gaussian(identity))
 result1 <- summary(result.5)$coefficients
 for(k in 1:6){
-  irr1 <- result1[k+1,1]    ##irr值
-  std1 <- result1[k+1,2]    ##std值
+  irr1 <- result1[k+1,1]    ##irr
+  std1 <- result1[k+1,2]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -827,7 +827,7 @@ for (j in 1:8) {
                    data=dt0,waves=wave,family=binomial(logit))
   summary(result)
   result <- summary(result)$coefficients
-  irr <- exp(result[2,1])    ##irr值
+  irr <- exp(result[2,1])    ##irr
   std <- irr * result[2,2]
   irr_l <- irr-qnorm((1+0.95)/2)*std    ##irr_low
   irr_u <- irr+qnorm((1+0.95)/2)*std    ##irr_up
@@ -845,8 +845,8 @@ result.5 <- geeglm(depress1~factor(housefw2)+factor(employ1)+factor(pension1)+
                    data=dt0,waves=wave,family=binomial(logit))
 result1 <- summary(result.5)$coefficients
 for(k in 1:8){
-  irr1 <- exp(result1[k+1,1])    ##irr值
-  std1 <- irr1 * result1[k+1,2]    ##std值
+  irr1 <- exp(result1[k+1,1])    ##irr
+  std1 <- irr1 * result1[k+1,2]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -854,13 +854,13 @@ for(k in 1:8){
   
   if (k==8){
     k=9
-    n <- length(dt0$id)    ##n值
+    n <- length(dt0$id)    ##n
     meta[[k]][18,4] <- n
     meta[[k]][18,6] <- irr1
     meta[[k]][18,7] <- std1
     k=k+1
   }else{
-    n <- length(dt0$id)    ##n值
+    n <- length(dt0$id)    ##n
     meta[[k]][18,4] <- n
     meta[[k]][18,6] <- irr1
     meta[[k]][18,7] <- std1
@@ -884,8 +884,8 @@ result.5 <- geeglm(depress1~factor(sdoh1)+age+factor(sex)+factor(smoke)+factor(d
                    data=dt0,waves=wave,family=binomial(logit))
 result1 <- summary(result.5)$coefficients
 for(k in 1:6){
-  irr1 <- exp(result1[k+1,1])    ##irr值
-  std1 <- irr1 * result1[k+1,2]    ##std值
+  irr1 <- exp(result1[k+1,1])    ##irr
+  std1 <- irr1 * result1[k+1,2]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -940,7 +940,7 @@ for(i in 1:5){
       }
     }
   }
-  dt0 = dt0[dt0$depress2 != -1, ]   #去除最后一次follow-up数据
+  dt0 = dt0[dt0$depress2 != -1, ] 
   dt[[i]]=dt0
 }
 
@@ -978,7 +978,7 @@ for (j in 1:8) {
                    data=dt0,waves=wave,family=binomial(logit))
   summary(result)
   result <- summary(result)$coefficients
-  irr <- exp(result[2,1])    ##irr值
+  irr <- exp(result[2,1])    ##irr
   std <- irr * result[2,2]
   irr_l <- irr-qnorm((1+0.95)/2)*std    ##irr_low
   irr_u <- irr+qnorm((1+0.95)/2)*std    ##irr_up
@@ -996,8 +996,8 @@ result.5 <- geeglm(depress2~factor(housefw2)+factor(employ1)+factor(pension1)+
                    data=dt0,waves=wave,family=binomial(logit))
 result1 <- summary(result.5)$coefficients
 for(k in 1:8){
-  irr1 <- exp(result1[k+1,1])    ##irr值
-  std1 <- irr1 * result1[k+1,2]    ##std值
+  irr1 <- exp(result1[k+1,1])    ##irr
+  std1 <- irr1 * result1[k+1,2]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -1005,16 +1005,16 @@ for(k in 1:8){
   
   if (k==8){
     k=9
-    n <- length(dt0$id)    ##n值
-    case <- dt0 %>% summarize(count = sum(depress2 == 1))    ##case值
+    n <- length(dt0$id)    ##n
+    case <- dt0 %>% summarize(count = sum(depress2 == 1))    ##case
     meta[[k]][7,4] <- n
     meta[[k]][7,5] <- case
     meta[[k]][7,6] <- irr1
     meta[[k]][7,7] <- std1
     k=k+1
   }else{
-    n <- length(dt0$id)    ##n值
-    case <- dt0 %>% summarize(count = sum(depress2 == 1))    ##case值
+    n <- length(dt0$id)    ##n
+    case <- dt0 %>% summarize(count = sum(depress2 == 1))    ##case
     meta[[k]][7,4] <- n
     meta[[k]][7,5] <- case
     meta[[k]][7,6] <- irr1
@@ -1038,8 +1038,8 @@ result.5 <- geeglm(depress2~factor(sdoh1)+age+factor(sex)+factor(smoke)+factor(d
                    data=dt0,waves=wave,family=binomial(logit))
 result1 <- summary(result.5)$coefficients
 for(k in 1:6){
-  irr1 <- exp(result1[k+1,1])    ##irr值
-  std1 <- irr1 * result1[k+1,2]    ##std值
+  irr1 <- exp(result1[k+1,1])    ##irr
+  std1 <- irr1 * result1[k+1,2]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -1075,8 +1075,8 @@ result.5 <- geeglm(depress2~factor(sdoh1)+age+factor(sex)+factor(smoke)+factor(d
                    data=dt0,waves=wave,family=binomial(logit))
 result1 <- summary(result.5)$coefficients
 for(k in 1:6){
-  irr1 <- exp(result1[k+1,1])    ##irr值
-  std1 <- irr1 * result1[k+1,2]    ##std值
+  irr1 <- exp(result1[k+1,1])    ##irr
+  std1 <- irr1 * result1[k+1,2]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -1231,8 +1231,8 @@ for(i in 1:8){
   }
   result2 <- summary(pool(result1))
   
-  irr1 <- exp(result2[2,2])    ##irr值
-  std1 <- irr1 * result2[2,3]    ##std值
+  irr1 <- exp(result2[2,2])    ##irr
+  std1 <- irr1 * result2[2,3]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -1250,8 +1250,8 @@ result3 <- with(anesimp_long_mids,
 result4 <- summary(pool(result3))
 k=1
 for(k in 1:8){
-  irr1 <- exp(result4[k+1,2])    ##irr值
-  std1 <- irr1 * result4[k+1,3]    ##std值
+  irr1 <- exp(result4[k+1,2])    ##irr
+  std1 <- irr1 * result4[k+1,3]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -1259,13 +1259,13 @@ for(k in 1:8){
   
   if (k==8){
     k=9
-    n <- length(dt0$id)    ##n值
+    n <- length(dt0$id)    ##n
     meta[[k]][12,4] <- n
     meta[[k]][12,6] <- irr1
     meta[[k]][12,7] <- std1
     k=k+1
   }else{
-    n <- length(dt0$id)    ##n值
+    n <- length(dt0$id)    ##n
     meta[[k]][12,4] <- n
     meta[[k]][12,6] <- irr1
     meta[[k]][12,7] <- std1
@@ -1281,8 +1281,8 @@ result5 <- with(anesimp_long_mids,
 result6 <- summary(pool(result5))
 j=1
 for(j in 1:6){
-  irr1 <- exp(result6[j+1,2])    ##irr值
-  std1 <- irr1 * result6[j+1,3]    ##std值
+  irr1 <- exp(result6[j+1,2])    ##irr
+  std1 <- irr1 * result6[j+1,3]    ##std
   irr_l1 <- irr1-qnorm((1+0.95)/2)*std1    ##irr_low
   irr_u1 <- irr1+qnorm((1+0.95)/2)*std1    ##irr_up
   irr_ci1 <- str_c(sprintf("%0.2f",irr1)," (",sprintf("%0.2f",irr_l1),", ",sprintf("%0.2f",irr_u1),")")
@@ -1313,7 +1313,7 @@ library(ggplot2)
 
 interact <- read.xlsx(startRow = 1,
                       "C:/Users/Lenovo/Desktop/搞数据库/4. 数据分析/6. 交互作用分析/分析结果1.xlsx",
-                      sheet="Sheet1")    ##定义接受数据框
+                      sheet="Sheet1")    ##define a table to receive results
 
 data <- read_dta("D:/SCI/Database/0. 数据汇总 (6 database)/所有期数据框（调节效应分析）/2. 分析库/6个数据库（合并）.dta")
 data1 <- data.frame(data)
@@ -1566,7 +1566,7 @@ write.xlsx(list_data, file = "C:/Users/Lenovo/Desktop/搞数据库/4. 数据分�
 ###### this analysis was not identified as the most suitable model, details see method section
 
 ###########using the merged sample of six cohort studies############
-library(haven)    ##打开.dta文件
+library(haven)
 library(lme4)
 library(stats)
 library(stringr)
